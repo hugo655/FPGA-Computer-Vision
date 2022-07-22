@@ -1,6 +1,6 @@
 #!/bin/python
 
-from re import I
+
 import sys
 import os
 import imageio as iio
