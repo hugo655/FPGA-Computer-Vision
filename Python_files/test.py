@@ -1,5 +1,10 @@
+
+#   [x] display grey image function  
+#   [ ] image_convolution function
+
 import matplotlib.pyplot as plt
 import numpy as np
+
 
 def show_img_grey(grey_img: np.ndarray):
     plt.imshow(demo_img,cmap='gray',vmin=0,vmax=255)
