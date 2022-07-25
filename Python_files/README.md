@@ -20,6 +20,7 @@ conda create --name FPGA-Vision
 conda install -n FPGA-Vision scipy
 conda install -n FPGA-Vision matplotlib
 conda install -n FPGA-Vision imageio
+conda install -c conda-forge opencv -n FPGA-Vision
 conda activate FPGA-Vision
 conda list
 ```

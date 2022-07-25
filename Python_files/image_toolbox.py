@@ -8,8 +8,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
+def rgb2grey(rgb_img: np.ndarray):
+    grey_img = 0.299*rgb_img[:,:,0] + 0.587*rgb_img[:,:,1] + 0.114*rgb_img[:,:,2]    
+    return grey_img
+
 def show_img_grey(grey_img: np.ndarray):
-    plt.imshow(demo_img,cmap='gray',vmin=0,vmax=255)
+    plt.imshow(grey_img,cmap='gray',vmin=0,vmax=255)
     plt.show()
 
 def pad_image(img: np.ndarray, kernel_size: int):
@@ -71,13 +75,3 @@ def impulse_5x5():
     unit_impulse[2,2] = 1
     return unit_impulse
 
-
-demo_img = impulse_5x5()
-w = kernel_generator(0)
-
-out_cor = corr(demo_img,w)
-out_cov = cov(demo_img,w)
-print(demo_img)
-print(w)
-print(out_cor)
-print(out_cov)
