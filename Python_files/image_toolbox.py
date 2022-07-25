@@ -7,14 +7,15 @@ from matplotlib import image
 import matplotlib.pyplot as plt
 import numpy as np
 
-
-def rgb2grey(rgb_img: np.ndarray):
-    grey_img = 0.299*rgb_img[:,:,0] + 0.587*rgb_img[:,:,1] + 0.114*rgb_img[:,:,2]    
-    return grey_img
-
+#___ plot functions
 def show_img_grey(grey_img: np.ndarray):
     plt.imshow(grey_img,cmap='gray',vmin=0,vmax=255)
     plt.show()
+
+#___ Processing Functions
+def rgb2grey(rgb_img: np.ndarray):
+    grey_img = 0.299*rgb_img[:,:,0] + 0.587*rgb_img[:,:,1] + 0.114*rgb_img[:,:,2]    
+    return grey_img
 
 def pad_image(img: np.ndarray, kernel_size: int):
     kernel_border_size = kernel_size-1
@@ -58,6 +59,7 @@ def slide_and_multiply(img: np.ndarray, kernel: np.ndarray):
     
     return output_img
 
+#___ images/matrices generators
 def sobel_coeficients():
     Gx = np.array([[-1,0,1],[-2,0,2],[-1,0,1]])
     Gy = np.array([[1,2,1],[0,0,0],[-1,-2,-1]])
@@ -74,4 +76,19 @@ def impulse_5x5():
     unit_impulse = np.zeros((5,5))
     unit_impulse[2,2] = 1
     return unit_impulse
+
+def gradient_generator(type=0, size=10):
+    output_img = np.zeros((size,size))
+    if(type == 0):
+        output_img[0:int(size/2),0::] = 100
+        output_img[int(size/2):int(size),::] = 220
+    elif(type == 1):
+        output_img[0::,0:int(size/2)] = 100
+        output_img[0::,int(size/2):int(size)] = 220
+    elif(type == 2):
+        output_img[0:int(size/2),0::] = 100
+        output_img[0::,0:int(size/2)] += 100
+        output_img[int(size/2):int(size),::] = 220 
+        output_img[0::,int(size/2):int(size)] += 30   
+    return output_img
 
