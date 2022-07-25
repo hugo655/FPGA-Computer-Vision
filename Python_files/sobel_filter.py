@@ -6,27 +6,27 @@ import os
 import imageio as iio
 import matplotlib.pyplot as plt
 import numpy as np
-
-def rgb2grey(rgb_img: np.ndarray):
-    grey_img = 0.299*rgb_img[:,:,0] + 0.587*rgb_img[:,:,1] + 0.114*rgb_img[:,:,2]    
-    return grey_img
+import image_toolbox as it
 
 # Import image
 image_path = sys.argv[1]
 image = np.array(iio.imread(image_path))
 
 #Convert to Grey Scale
-grey_img = rgb2grey(image)
+grey_img = it.rgb2grey(image)
 
-y_dim, x_dim = grey_img.shape
+Gy,Gx = it.sobel_coeficients()
 
-print(x_dim, y_dim)
+del_x_cor = it.corr(grey_img,Gx)
+del_y_cor = it.corr(grey_img,Gy)
 
-#Print image in grey scale
-plt.imshow(grey_img,cmap='gray')
-plt.show()
+G_cor = np.sqrt(del_x_cor**2+del_y_cor**2)
+
+del_x_cov = it.corr(grey_img,Gx)
+del_y_cov = it.corr(grey_img,Gy)
+
+G_cov = np.sqrt(del_x_cov**2+del_y_cov**2)
 
 
-# print(image.shape)
-# plt.imshow(image)
-# plt.show()
+it.show_img_grey(G_cor)
+it.show_img_grey(G_cov)
