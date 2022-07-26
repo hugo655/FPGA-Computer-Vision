@@ -13,6 +13,15 @@ def show_img_grey(grey_img: np.ndarray):
     plt.show()
 
 #___ Processing Functions
+def sobel(img):
+    Gy, Gx = sobel_coeficients()
+    del_x = cov(img,Gx)
+    del_y = cov(img,Gy)
+    
+    G = abs(del_y) + abs(del_x)
+
+    return G, del_y, del_x
+
 def images_equal(img1,img2):
     return np.array_equiv(img1,img2)
 

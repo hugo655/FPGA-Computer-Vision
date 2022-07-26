@@ -8,24 +8,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 import image_toolbox as it
 
-# Import image
 image_path = sys.argv[1]
-image = np.array(iio.imread(image_path))
+img_rgb =np.array(iio.imread(image_path))
+img = it.rgb2grey(img_rgb)
 
-#Convert to Grey Scale
-grey_img = it.rgb2grey(image)
+G,Gy,Gx = it.sobel(img)
 
-Gy,Gx = it.sobel_coeficients()
+it.show_img_grey(G)
 
-del_x_cor = it.corr(grey_img,Gx)
-del_y_cor = it.corr(grey_img,Gy)
-
-G_cor = np.sqrt(del_x_cor**2+del_y_cor**2)
-
-del_x_cov = it.corr(grey_img,Gx)
-del_y_cov = it.corr(grey_img,Gy)
-
-G_cov = np.sqrt(del_x_cov**2+del_y_cov**2)
-
-print(it.images_equal(G_cov,grey_img))
 
