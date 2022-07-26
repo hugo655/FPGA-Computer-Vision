@@ -14,6 +14,11 @@ img = it.rgb2grey(img_rgb)
 
 G,Gy,Gx = it.sobel(img)
 
+# Normalize the values 
+G = G*1/8
+
+# Invert the colors for better visualization
+G = 255 - G
+
+print(G.max())
 it.show_img_grey(G)
-
-
