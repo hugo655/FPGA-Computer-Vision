@@ -1,11 +1,8 @@
 #!/bin/python
 
-
 import sys
-import os
-import imageio as iio
-import matplotlib.pyplot as plt
 import numpy as np
+import imageio as iio
 import image_toolbox as it
 
 image_path = sys.argv[1]
@@ -20,5 +17,4 @@ G = G*1/8
 # Invert the colors for better visualization
 G = 255 - G
 
-print(G.max())
 it.show_img_grey(G)
