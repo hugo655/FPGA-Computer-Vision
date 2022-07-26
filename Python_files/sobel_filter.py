@@ -27,6 +27,5 @@ del_y_cov = it.corr(grey_img,Gy)
 
 G_cov = np.sqrt(del_x_cov**2+del_y_cov**2)
 
+print(it.images_equal(G_cov,grey_img))
 
-it.show_img_grey(G_cor)
-it.show_img_grey(G_cov)

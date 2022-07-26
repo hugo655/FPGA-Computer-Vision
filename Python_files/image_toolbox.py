@@ -13,6 +13,9 @@ def show_img_grey(grey_img: np.ndarray):
     plt.show()
 
 #___ Processing Functions
+def images_equal(img1,img2):
+    return np.array_equiv(img1,img2)
+
 def rgb2grey(rgb_img: np.ndarray):
     grey_img = 0.299*rgb_img[:,:,0] + 0.587*rgb_img[:,:,1] + 0.114*rgb_img[:,:,2]    
     return grey_img
@@ -91,4 +94,6 @@ def gradient_generator(type=0, size=10):
         output_img[int(size/2):int(size),::] = 220 
         output_img[0::,int(size/2):int(size)] += 30   
     return output_img
+
+
 
